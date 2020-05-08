@@ -3,8 +3,9 @@
 # Create the folder to store Next Gen images
 mkdir ./Images/JP2Files
 mkdir ./Images/WebpFiles
-mkdir ./Images/JXRFiles
+# mkdir ./Images/JXRFiles
 mkdir ./Images/Placeholders
+mkdir ./Images/jpg
 
 # Go into Image directory for easier understanding
 cd Images
@@ -24,13 +25,14 @@ for file in *; do
       # -resize creates thumbnail like images 4096@ = 64x64 16384@ 128x128
       convert $file -strip -quality 1 -colors 255 -resize 4096@ ./Placeholders/$fileName.png
     else
-      convert $file -strip -quality 20 -resize 16384@ ./Placeholders/$fileName.jpg
+      convert $file -strip -quality 20 -resize 16384@ ./png/$fileName.jpg
     fi
 
     # Conversion to Next Gen formats, using solely imageMagick defaults
     convert $file -quality 100 ./WebpFiles/$fileName.webp
     convert $file ./JP2Files/$fileName.jp2
-    convert $file ./JXRFiles/$fileName.jxr
+    # convert $file ./JXRFiles/$fileName.jxr
+    convert $file ./jpg/$fileName.jpg
 
   fi
 
